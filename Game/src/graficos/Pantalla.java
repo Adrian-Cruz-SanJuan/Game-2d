@@ -7,6 +7,11 @@ public final class Pantalla {
 
 	public final int[] pixeles;
 
+	// Temporales
+	private final static int LADO_SPRITE = 32;
+	private final static int MASCARA_SPRITE = LADO_SPRITE - 1;
+	// Fin temporal
+
 	public Pantalla(final int ancho, final int alto) {
 		this.ancho = ancho;
 		this.alto = alto;
@@ -33,8 +38,9 @@ public final class Pantalla {
 					continue;
 				}
 
-				// codigo para redibujar la pantalla
-
+				// Temporal
+				pixeles[posicionX + posicionY * ancho] = Sprite.plantilla.pixeles[(x & MASCARA_SPRITE)
+						+ (y & MASCARA_SPRITE) * LADO_SPRITE];
 			}
 		}
 	}
