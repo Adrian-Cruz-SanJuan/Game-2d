@@ -8,6 +8,7 @@ import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 import Control.Teclado;
@@ -15,9 +16,6 @@ import graficos.Pantalla;
 
 public class Juego extends Canvas implements Runnable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	private static final int ANCHO = 800;
@@ -40,6 +38,7 @@ public class Juego extends Canvas implements Runnable {
 
 	private static BufferedImage imagen = new BufferedImage(ANCHO, ALTO, BufferedImage.TYPE_INT_RGB);
 	private static int[] pixeles = ((DataBufferInt) imagen.getRaster().getDataBuffer()).getData();
+	private static final ImageIcon icono = new ImageIcon(Juego.class.getResource("/icono/icono.png"));
 
 	private Juego() {
 		setPreferredSize(new Dimension(ANCHO, ALTO));
@@ -52,6 +51,7 @@ public class Juego extends Canvas implements Runnable {
 		ventana = new JFrame(NOMBRE);
 		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		ventana.setResizable(false);
+		ventana.setIconImage(icono.getImage());
 		ventana.setLayout(new BorderLayout());
 		ventana.add(this, BorderLayout.CENTER);
 		ventana.pack();
@@ -129,7 +129,7 @@ public class Juego extends Canvas implements Runnable {
 
 	public void run() {
 		final int NS_POR_SEGUNDO = 1000000000;
-		final byte APS_OBJETIVO = 60; // APS (Actualizaciones por segundo)
+		final int APS_OBJETIVO = 200; // APS (Actualizaciones por segundo)
 		final double NS_POR_ACTUALIZACION = NS_POR_SEGUNDO / APS_OBJETIVO;
 
 		long referenciaActualizacion = System.nanoTime();
