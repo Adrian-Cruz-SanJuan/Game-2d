@@ -9,6 +9,10 @@ public abstract class Cuadro {
 
 	public Sprite sprite;
 
+	// Coleccion de cuadros
+	public static final Cuadro ASFALTO = new CuadroAsfalto(Sprite.ASFALTO);
+	// Fin de la coleccion de cuadros
+
 	public Cuadro(Sprite sprite) {
 		this.sprite = sprite;
 	}
